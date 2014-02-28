@@ -16,8 +16,7 @@ window.onmousemove = function(event) {
 	mouseX = event.clientX;
 	mouseY = event.clientY;
 	if (!scrollTimeline) {
-		// scrollTimeline = window.setInterval(scroll, updateInterval);
- 	scrollTimeline = webkitRequestAnimationFrame(scroll);
+		scrollTimeline = window.setInterval(scroll, updateInterval);
 	}
 };
 
@@ -34,12 +33,10 @@ timeline.onmouseout = unslide; // Undo slides when out of timeline
 
 
 function scroll(event) {
-	// scrollTimeline = webkitRequestAnimationFrame(scroll);
 	var buffer = window.innerWidth/4;
 
 	var distanceToCenter = Math.abs(window.innerWidth/2-mouseX);
 	var speed = distanceToCenter/(window.innerWidth/2);
-	console.log("Speed is " + speed);
 	if (mouseX < buffer) {
 		scrolling = true;
 		scrollLeft(speed);
@@ -50,8 +47,7 @@ function scroll(event) {
 	}
 	else {
 		scrolling = false;
-		// window.clearInterval(scrollTimeline);
-		webkitCancelAnimationFrame(scrollTimeline);
+		window.clearInterval(scrollTimeline);
 		scrollTimeline = null;
 	}
 }
@@ -61,7 +57,6 @@ function scrollLeft(speed) {
 }
 
 function scrollRight(speed) {
-	scrollTimeline = webkitRequestAnimationFrame(scroll);
 	var leftPixels = parseInt(getStyleProp(timeline, 'left'), 10);
 	var toShift = Math.pow(speed,3)*updateInterval;
 	var newLeft = leftPixels - toShift;
