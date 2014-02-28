@@ -36,7 +36,7 @@ function scroll(event) {
 	var buffer = window.innerWidth/4;
 
 	var distanceToCenter = Math.abs(window.innerWidth/2-mouseX);
-	var speed = distanceToCenter/(window.innerWidth/2);
+	var speed = distanceToCenter/(window.innerWidth/3);
 	if (mouseX < buffer) {
 		scrolling = true;
 		scrollLeft(speed);
